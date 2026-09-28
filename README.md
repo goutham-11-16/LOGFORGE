@@ -1,12 +1,15 @@
 # LOGFORGE: Universal Log Pre-processing Framework (ULPF)
 > **SIH Problem Statement ID: 26156**  
-> **Universal Log Pre-processing Framework for Next-Generation SIEM & Cybersecurity Platforms**
+> **Universal Log Pre-processing Framework for Next-Generation SIEM & Cybersecurity Platforms**  
+> **Repository:** [https://github.com/goutham-11-16/LOGFORGE](https://github.com/goutham-11-16/LOGFORGE)
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-LOGFORGE-blue?logo=github)](https://github.com/goutham-11-16/LOGFORGE)
 [![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
 [![React 19](https://img.shields.io/badge/React-19+-61DAFB.svg)](https://react.dev/)
-[![Tests Passing](https://img.shields.io/badge/tests-100%25%20passing-brightgreen.svg)]()
+[![GIGW 3.0 Aligned](https://img.shields.io/badge/GIGW%203.0-WCAG%202.1%20AA-orange.svg)]()
 [![Air-Gapped Ready](https://img.shields.io/badge/deployment-air--gapped%20ready-success.svg)]()
+
 
 ---
 
