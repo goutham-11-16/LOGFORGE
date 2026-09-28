@@ -1,30 +1,42 @@
 """Storage and Persistence Layer for LOGFORGE ULPF using SQLite.
 Guarantees zero-infrastructure air-gapped operation and fast querying.
+Enhanced with composite indexes, threat intel columns, time-range analytics,
+and connection pooling via thread-local storage.
 """
 import sqlite3
 import json
 import os
+import threading
 from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime, timezone
 from backend.schema.models import UniversalEvent, FailedEvent, BatchProcessSummary
 
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logforge.db")
 
+# Thread-local connection pool
+_local = threading.local()
+
 
 def get_db_connection() -> sqlite3.Connection:
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode = WAL;")
-    conn.execute("PRAGMA synchronous = NORMAL;")
-    conn.execute("PRAGMA cache_size = -64000;")
-    conn.execute("PRAGMA temp_store = MEMORY;")
-    conn.execute("PRAGMA mmap_size = 268435456;")
+    """Return a thread-local connection with optimised PRAGMA settings."""
+    conn = getattr(_local, "conn", None)
+    if conn is None:
+        conn = sqlite3.connect(DB_PATH, check_same_thread=False)
+        conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA journal_mode = WAL;")
+        conn.execute("PRAGMA synchronous = NORMAL;")
+        conn.execute("PRAGMA cache_size = -64000;")
+        conn.execute("PRAGMA temp_store = MEMORY;")
+        conn.execute("PRAGMA mmap_size = 268435456;")
+        conn.execute("PRAGMA foreign_keys = ON;")
+        _local.conn = conn
     return conn
 
 
 def init_db():
     """Initialize database tables and indexes."""
     with get_db_connection() as conn:
+        # Step 1: Create tables (no-op if they exist with old schema)
         conn.executescript("""
         CREATE TABLE IF NOT EXISTS events (
             event_id TEXT PRIMARY KEY,
@@ -39,11 +51,16 @@ def init_db():
             protocol TEXT,
             action TEXT,
             severity TEXT,
+            category TEXT DEFAULT 'network',
+            threat_detected INTEGER DEFAULT 0,
+            threat_type TEXT,
+            risk_score INTEGER DEFAULT 0,
             normalized_json TEXT NOT NULL,
             raw_event TEXT NOT NULL,
             created_at TEXT NOT NULL
         );
 
+        -- Single-column indexes (only on columns that exist in the original schema)
         CREATE INDEX IF NOT EXISTS idx_events_timestamp ON events(timestamp);
         CREATE INDEX IF NOT EXISTS idx_events_src_ip ON events(source_ip);
         CREATE INDEX IF NOT EXISTS idx_events_dst_ip ON events(destination_ip);
@@ -51,6 +68,11 @@ def init_db():
         CREATE INDEX IF NOT EXISTS idx_events_protocol ON events(protocol);
         CREATE INDEX IF NOT EXISTS idx_events_severity ON events(severity);
         CREATE INDEX IF NOT EXISTS idx_events_device_type ON events(source_device_type);
+
+        -- Composite indexes on original columns
+        CREATE INDEX IF NOT EXISTS idx_events_action_severity ON events(action, severity);
+        CREATE INDEX IF NOT EXISTS idx_events_vendor_action ON events(source_vendor, action);
+        CREATE INDEX IF NOT EXISTS idx_events_created ON events(created_at);
 
         CREATE TABLE IF NOT EXISTS failed_events (
             event_id TEXT PRIMARY KEY,
@@ -72,7 +94,33 @@ def init_db():
             created_at TEXT NOT NULL
         );
         """)
+
+        # Step 2: Migration — add new columns if table exists from older schema
+        _safe_add_column(conn, "events", "category", "TEXT DEFAULT 'network'")
+        _safe_add_column(conn, "events", "threat_detected", "INTEGER DEFAULT 0")
+        _safe_add_column(conn, "events", "threat_type", "TEXT")
+        _safe_add_column(conn, "events", "risk_score", "INTEGER DEFAULT 0")
+
+        # Step 3: Create indexes on new columns (after migration ensures they exist)
+        for idx_sql in [
+            "CREATE INDEX IF NOT EXISTS idx_events_threat ON events(threat_detected, risk_score)",
+            "CREATE INDEX IF NOT EXISTS idx_events_category ON events(category)",
+        ]:
+            try:
+                conn.execute(idx_sql)
+            except sqlite3.OperationalError:
+                pass
+
         conn.commit()
+
+
+def _safe_add_column(conn: sqlite3.Connection, table: str, column: str, col_type: str):
+    """Add a column if it does not already exist (safe migration)."""
+    try:
+        conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {col_type}")
+    except sqlite3.OperationalError:
+        # Column already exists
+        pass
 
 
 class EventStore:
@@ -99,6 +147,10 @@ class EventStore:
                 e.network.protocol,
                 e.event.action,
                 e.event.severity,
+                e.event.category,
+                1 if e.threat_intel.threat_detected else 0,
+                e.threat_intel.threat_type,
+                e.threat_intel.risk_score,
                 e.model_dump_json(),
                 e.raw_event,
                 now_str
@@ -110,8 +162,9 @@ class EventStore:
             INSERT OR REPLACE INTO events (
                 event_id, timestamp, source_vendor, source_device_type, hostname,
                 source_ip, destination_ip, source_port, destination_port, protocol,
-                action, severity, normalized_json, raw_event, created_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                action, severity, category, threat_detected, threat_type, risk_score,
+                normalized_json, raw_event, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, records)
             conn.commit()
 
@@ -175,9 +228,10 @@ class EventStore:
                 protocol LIKE ? OR
                 action LIKE ? OR
                 source_vendor LIKE ? OR
-                raw_event LIKE ?
+                raw_event LIKE ? OR
+                threat_type LIKE ?
             )""")
-            params.extend([s_param] * 7)
+            params.extend([s_param] * 8)
 
         if source_ip:
             conditions.append("source_ip = ?")
@@ -277,6 +331,33 @@ class EventStore:
                 FROM events GROUP BY dev ORDER BY cnt DESC
             """).fetchall()
 
+            # Threat Statistics
+            threat_count = conn.execute(
+                "SELECT COUNT(*) FROM events WHERE threat_detected = 1"
+            ).fetchone()[0]
+
+            threat_types = conn.execute("""
+                SELECT threat_type, COUNT(*) as cnt FROM events
+                WHERE threat_type IS NOT NULL AND threat_type != ''
+                GROUP BY threat_type ORDER BY cnt DESC LIMIT 10
+            """).fetchall()
+
+            avg_risk = conn.execute(
+                "SELECT COALESCE(AVG(risk_score), 0) FROM events WHERE threat_detected = 1"
+            ).fetchone()[0]
+
+            # Category breakdown
+            categories = conn.execute("""
+                SELECT LOWER(COALESCE(category, 'network')) as cat, COUNT(*) as cnt
+                FROM events GROUP BY cat ORDER BY cnt DESC
+            """).fetchall()
+
+            # Vendor breakdown
+            vendors = conn.execute("""
+                SELECT COALESCE(source_vendor, 'Unknown') as vendor, COUNT(*) as cnt
+                FROM events GROUP BY vendor ORDER BY cnt DESC LIMIT 10
+            """).fetchall()
+
             # Recent Batches
             recent_batches = conn.execute("""
                 SELECT batch_id, total_events, normalized_count, failed_count,
@@ -295,6 +376,13 @@ class EventStore:
                 "actions": [{"action": r["act"], "count": r["cnt"]} for r in actions],
                 "severities": [{"severity": r["sev"], "count": r["cnt"]} for r in severities],
                 "device_types": [{"device_type": r["dev"], "count": r["cnt"]} for r in devices],
+                "categories": [{"category": r["cat"], "count": r["cnt"]} for r in categories],
+                "vendors": [{"vendor": r["vendor"], "count": r["cnt"]} for r in vendors],
+                "threat_summary": {
+                    "total_threats": threat_count,
+                    "average_risk_score": round(avg_risk, 1),
+                    "threat_types": [{"type": r["threat_type"], "count": r["cnt"]} for r in threat_types],
+                },
                 "recent_batches": [dict(r) for r in recent_batches]
             }
 

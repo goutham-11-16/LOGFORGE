@@ -42,12 +42,22 @@ class ProcessingMetadata(BaseModel):
     tags: List[str] = Field(default_factory=list, description="Categorization or forensic tags")
 
 
+class ThreatIntelligence(BaseModel):
+    threat_detected: bool = Field(default=False, description="Flag indicating potential cyber threat/anomaly")
+    threat_type: Optional[str] = Field(default=None, description="e.g. BruteForce, PortScan, C2Beaconing, DataExfiltration, Reconnaissance")
+    mitre_technique_id: Optional[str] = Field(default=None, description="e.g. T1110, T1046, T1071, T1041")
+    risk_score: int = Field(default=0, description="Risk Score from 0 to 100")
+    geo_source: Optional[str] = Field(default="Internal LAN", description="Originating Geo location or Network segment")
+    geo_destination: Optional[str] = Field(default="Internal LAN", description="Destination Geo location or Network segment")
+
+
 class UniversalEvent(BaseModel):
     event_id: str = Field(default_factory=lambda: f"evt_{uuid.uuid4().hex[:12]}", description="Unique identifier")
     timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat(), description="Normalized ISO-8601 UTC timestamp")
     source: SourceInfo = Field(default_factory=SourceInfo)
     event: EventInfo = Field(default_factory=EventInfo)
     network: NetworkInfo = Field(default_factory=NetworkInfo)
+    threat_intel: ThreatIntelligence = Field(default_factory=ThreatIntelligence, description="Automated SOC threat intelligence & MITRE ATT&CK mapping")
     user: Dict[str, Any] = Field(default_factory=dict, description="User context if available")
     process: Dict[str, Any] = Field(default_factory=dict, description="Process context if available")
     metadata: ProcessingMetadata
