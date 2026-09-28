@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  logforge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: logforge_ulpf
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOGFORGE_HOST=0.0.0.0
+      - LOGFORGE_PORT=8000
+    volumes:
+      - logforge_data:/app/backend/data
+    restart: unless-stopped
+
+volumes:
+  logforge_data:

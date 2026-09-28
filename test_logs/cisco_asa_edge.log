@@ -1,0 +1,10 @@
+<164>Sep 28 14:31:01 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:185.220.101.5/45678 dst inside:10.0.4.15/80 by access-group "outside_access_in"
+<166>Sep 28 14:31:02 cisco-asa-edge : %ASA-6-302013: Built outbound TCP connection 49120 for outside:8.8.8.8/443 (8.8.8.8/443) to inside:192.168.1.105/52341 (192.168.1.105/52341)
+<164>Sep 28 14:31:03 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:45.33.32.156/61200 dst inside:10.200.1.50/22 by access-group "outside_access_in"
+<166>Sep 28 14:31:04 cisco-asa-edge : %ASA-6-302013: Built outbound TCP connection 49121 for outside:1.1.1.1/53 (1.1.1.1/53) to inside:10.0.4.15/49152 (10.0.4.15/49152)
+<164>Sep 28 14:31:05 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:203.0.113.45/54000 dst inside:192.168.1.1/443 by access-group "outside_access_in"
+<166>Sep 28 14:31:06 cisco-asa-edge : %ASA-6-302013: Built outbound TCP connection 49122 for outside:198.51.100.12/8080 (198.51.100.12/8080) to inside:172.16.2.88/55432 (172.16.2.88/55432)
+<164>Sep 28 14:31:07 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:185.220.101.5/58990 dst inside:192.168.50.21/3389 by access-group "outside_access_in"
+<166>Sep 28 14:31:08 cisco-asa-edge : %ASA-6-302013: Built outbound TCP connection 49123 for outside:8.8.8.8/443 (8.8.8.8/443) to inside:10.0.4.15/53200 (10.0.4.15/53200)
+<164>Sep 28 14:31:09 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:45.33.32.156/63000 dst inside:10.0.0.1/443 by access-group "outside_access_in"
+<166>Sep 28 14:31:10 cisco-asa-edge : %ASA-6-302013: Built outbound TCP connection 49124 for outside:1.1.1.1/53 (1.1.1.1/53) to inside:172.16.2.88/48000 (172.16.2.88/48000)

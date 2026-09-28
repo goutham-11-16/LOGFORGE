@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ==========================================================================
+   GIGW 3.0 & WCAG 2.1 LEVEL AA COMPLIANT DESIGN SYSTEM (WHITE / LIGHT THEME)
+   Aligned with Guidelines for Indian Government Websites (GIGW)
+   ========================================================================== */
+
+:root {
+  /* Font Scaling Variables */
+  --base-font-size: 15px;
+  
+  /* Standard GIGW White Theme Palette (Exceeds WCAG 2.1 AAA Contrast) */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  
+  /* Indian Government Official Colors */
+  --gov-navy: #003366;
+  --gov-navy-hover: #002244;
+  --gov-navy-light: #e6eef6;
+  --gov-saffron: #ea580c;
+  --gov-green: #15803d;
+  --gov-ashoka-blue: #000080;
+  
+  /* Borders with High Contrast Definition */
+  --border-color: #cbd5e1;
+  --border-light: #e2e8f0;
+  --border-hover: #003366;
+  --border-focus: #0284c7;
+  
+  /* Typography Colors (High Contrast Ratio > 7:1) */
+  --text-primary: #0f172a;       /* Dark slate ink */
+  --text-secondary: #334155;     /* WCAG AAA compliant */
+  --text-muted: #475569;         /* Subtitles & metadata */
+  --text-inverse: #ffffff;
+  
+  /* Semantic Badges & Status */
+  --status-allow-bg: #ecfdf5;
+  --status-allow-text: #065f46;
+  --status-allow-border: #a7f3d0;
+  
+  --status-deny-bg: #fef2f2;
+  --status-deny-text: #991b1b;
+  --status-deny-border: #fecaca;
+  
+  --status-alert-bg: #fffbeb;
+  --status-alert-text: #92400e;
+  --status-alert-border: #fde68a;
+  
+  --status-info-bg: #eff6ff;
+  --status-info-text: #1e40af;
+  --status-info-border: #bfdbfe;
+  
+  --status-purple-bg: #f5f3ff;
+  --status-purple-text: #5b21b6;
+  --status-purple-border: #ddd6fe;
+
+  --accent-cyan: #0284c7;
+  --accent-blue: #1d4ed8;
+  --accent-emerald: #059669;
+  --accent-rose: #dc2626;
+  --accent-amber: #d97706;
+  --accent-purple: #7c3aed;
+
+  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* ==========================================================================
+   GIGW ACCESSIBILITY: HIGH CONTRAST MODE (BLACK & YELLOW / WHITE)
+   ========================================================================== */
+[data-contrast="high"] {
+  --bg-primary: #000000;
+  --bg-secondary: #121212;
+  --bg-tertiary: #1e1e1e;
+  --bg-card: #000000;
+  --bg-card-hover: #1e1e1e;
+  
+  --gov-navy: #ffff00;
+  --gov-navy-hover: #ffffff;
+  --gov-navy-light: #222200;
+  
+  --border-color: #ffff00;
+  --border-light: #ffffff;
+  --border-hover: #00ffff;
+  
+  --text-primary: #ffff00;
+  --text-secondary: #ffffff;
+  --text-muted: #e2e8f0;
+  --text-inverse: #000000;
+  
+  --status-allow-bg: #000000;
+  --status-allow-text: #00ff66;
+  --status-allow-border: #00ff66;
+  
+  --status-deny-bg: #000000;
+  --status-deny-text: #ff3333;
+  --status-deny-border: #ff3333;
+  
+  --status-alert-bg: #000000;
+  --status-alert-text: #ffff00;
+  --status-alert-border: #ffff00;
+  
+  --status-info-bg: #000000;
+  --status-info-text: #33ccff;
+  --status-info-border: #33ccff;
+  
+  --status-purple-bg: #000000;
+  --status-purple-text: #ff66ff;
+  --status-purple-border: #ff66ff;
+
+  --accent-cyan: #00ffff;
+  --accent-blue: #33ccff;
+  --accent-emerald: #00ff66;
+  --accent-rose: #ff3333;
+  --accent-amber: #ffff00;
+  --accent-purple: #ff66ff;
+}
+
+/* Font Size Scaling Options */
+[data-font-size="small"] {
+  --base-font-size: 13.5px;
+}
+[data-font-size="normal"] {
+  --base-font-size: 15px;
+}
+[data-font-size="large"] {
+  --base-font-size: 17px;
+}
+
+/* ==========================================================================
+   BASE & RESET
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--base-font-size);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* GIGW Keyboard Focus Indicator (Mandatory WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #003366 !important;
+  outline-offset: 2px !important;
+}
+
+/* Skip to Main Content Link (GIGW Mandatory) */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--gov-navy);
+  color: #ffffff;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 9999;
+  border-radius: 0 0 6px 6px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ==========================================================================
+   CARDS & CONTAINERS (GIGW WHITE CLEAN SURFACES)
+   ========================================================================== */
+
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s ease;
+}
+
+.glass-card:hover {
+  border-color: #94a3b8;
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* ==========================================================================
+   BADGES (GIGW HIGH CONTRAST)
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-allow {
+  background: var(--status-allow-bg);
+  color: var(--status-allow-text);
+  border: 1px solid var(--status-allow-border);
+}
+
+.badge-deny {
+  background: var(--status-deny-bg);
+  color: var(--status-deny-text);
+  border: 1px solid var(--status-deny-border);
+}
+
+.badge-alert {
+  background: var(--status-alert-bg);
+  color: var(--status-alert-text);
+  border: 1px solid var(--status-alert-border);
+}
+
+.badge-info {
+  background: var(--status-info-bg);
+  color: var(--status-info-text);
+  border: 1px solid var(--status-info-border);
+}
+
+.badge-purple {
+  background: var(--status-purple-bg);
+  color: var(--status-purple-text);
+  border: 1px solid var(--status-purple-border);
+}
+
+/* Pulse indicator */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--gov-green);
+  box-shadow: 0 0 6px var(--gov-green);
+}
+
+/* ==========================================================================
+   BUTTONS (ACCESSIBLE & HIGH CONTRAST)
+   ========================================================================== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 6px;
+  background: var(--gov-navy);
+  color: #ffffff;
+  border: 1px solid var(--gov-navy);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:hover {
+  background: var(--gov-navy-hover);
+  border-color: var(--gov-navy-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-secondary);
+  border-color: #94a3b8;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   INPUTS & FORMS
+   ========================================================================== */
+
+.input-field {
+  width: 100%;
+  padding: 9px 14px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input-field:focus {
+  border-color: var(--gov-navy);
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.15);
+}
+
+/* ==========================================================================
+   CODE BLOCKS & LOG LOGS
+   ========================================================================== */
+
+pre, code {
+  font-family: var(--font-mono);
+}
+
+.code-container {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 0.82rem;
+  overflow-x: auto;
+  color: #0f172a;
+  line-height: 1.6;
+}
+
+/* GIGW Tricolor Accent Bar */
+.gov-tricolor-bar {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #ff9933 0%, #ff9933 33.3%, #ffffff 33.3%, #ffffff 66.6%, #138808 66.6%, #138808 100%);
+  border-bottom: 1px solid #cbd5e1;
+}
+
+/* Accessibility Control Buttons */
+.a11y-btn {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: var(--text-secondary);
+  padding: 2px 7px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.a11y-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.a11y-btn.active {
+  background: var(--gov-navy);
+  color: #ffffff;
+  border-color: var(--gov-navy);
+}

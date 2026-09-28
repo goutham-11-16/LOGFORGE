@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gradEmblemLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="gradTextLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+  </defs>
+
+  <!-- Cyber Shield Emblem -->
+  <g transform="translate(10, 10)">
+    <!-- Solid Shield -->
+    <path d="M50 8 L85 22 C85 56 66 82 50 91 C34 82 15 56 15 22 Z" fill="#f8fafc" stroke="url(#gradEmblemLight)" stroke-width="2.5"/>
+    
+    <!-- Cyber Geometric Data Core -->
+    <polygon points="50,26 68,36 68,58 50,68 32,58 32,36" fill="rgba(2, 132, 199, 0.12)" stroke="#0284c7" stroke-width="1.8"/>
+    <!-- Circuit Lines & Pulse Node -->
+    <circle cx="50" cy="47" r="6" fill="#059669"/>
+    <line x1="50" y1="26" x2="50" y2="41" stroke="#0284c7" stroke-width="2"/>
+    <line x1="50" y1="53" x2="50" y2="68" stroke="#0284c7" stroke-width="2"/>
+    <line x1="32" y1="47" x2="44" y2="47" stroke="#0284c7" stroke-width="2"/>
+    <line x1="56" y1="47" x2="68" y2="47" stroke="#0284c7" stroke-width="2"/>
+  </g>
+
+  <!-- Typography -->
+  <g transform="translate(120, 48)">
+    <text font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="38" font-weight="900" letter-spacing="-0.03em" fill="url(#gradTextLight)">LOG<tspan fill="#0284c7">FORGE</tspan></text>
+    <text y="30" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" letter-spacing="0.25em" fill="#059669">UNIVERSAL LOG FRAMEWORK</text>
+    <text y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="600" fill="#64748b">ENTERPRISE AIR-GAPPED SIEM PRE-PROCESSING ENGINE</text>
+  </g>
+</svg>

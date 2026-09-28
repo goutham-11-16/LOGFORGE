@@ -1,0 +1,5 @@
+Corrupted unparseable raw gibberish without any format 12345
+{invalid_json_missing_quote: true}
+CEF:invalid_too_few_pipes|only|two
+<99999>Invalid syslog priority number
+Random console debug statement: kernel panic at memory address 0x00000000

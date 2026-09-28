@@ -1,0 +1,6 @@
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:401|Packet dropped by rule|8|src=185.220.101.5 dst=10.200.1.50 spt=49152 dpt=22 proto=TCP act=deny msg=SSH brute force attempt detected
+CEF:0|CheckPoint|SmartDefense|R81.20|traffic:101|Outbound HTTPS permit|3|src=192.168.1.105 dst=8.8.8.8 spt=52341 dpt=443 proto=TCP act=allow msg=Permitted enterprise web traffic
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:402|SQL Injection Blocked|9|src=45.33.32.156 dst=192.168.1.1 spt=44300 dpt=443 proto=TCP act=deny msg=SQLi pattern in URI parameters
+CEF:0|CheckPoint|SmartDefense|R81.20|traffic:102|DNS Query Forwarded|2|src=10.0.4.15 dst=1.1.1.1 spt=49152 dpt=53 proto=UDP act=allow msg=Internal resolver query
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:403|RDP Scan Blocked|7|src=203.0.113.45 dst=192.168.50.21 spt=58990 dpt=3389 proto=TCP act=deny msg=Remote desktop unauthorized probe
+CEF:0|CheckPoint|SmartDefense|R81.20|traffic:103|Application API Call|3|src=172.16.2.88 dst=198.51.100.12 spt=55432 dpt=8080 proto=TCP act=allow msg=Authorized microservice traffic

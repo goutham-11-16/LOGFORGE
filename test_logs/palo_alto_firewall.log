@@ -1,0 +1,10 @@
+<14>1 2026-09-28T14:30:01Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.1.105 dst=8.8.8.8 sport=52341 dport=443 proto=tcp action=allow bytes_sent=1450 bytes_received=9820
+<14>1 2026-09-28T14:30:02Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=10.0.4.15 dst=1.1.1.1 sport=49152 dport=53 proto=udp action=allow bytes_sent=120 bytes_received=240
+<14>1 2026-09-28T14:30:03Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=185.220.101.5 dst=10.200.1.50 sport=61000 dport=22 proto=tcp action=deny bytes_sent=40 bytes_received=0
+<14>1 2026-09-28T14:30:04Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=172.16.2.88 dst=203.0.113.45 sport=55432 dport=8080 proto=tcp action=allow bytes_sent=3200 bytes_received=15400
+<14>1 2026-09-28T14:30:05Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=45.33.32.156 dst=192.168.1.1 sport=44300 dport=443 proto=tcp action=deny bytes_sent=48 bytes_received=0
+<14>1 2026-09-28T14:30:06Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.50.21 dst=198.51.100.12 sport=51400 dport=80 proto=tcp action=allow bytes_sent=890 bytes_received=4500
+<14>1 2026-09-28T14:30:07Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.1.105 dst=10.0.0.1 sport=50000 dport=443 proto=tcp action=allow bytes_sent=2300 bytes_received=12100
+<14>1 2026-09-28T14:30:08Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=185.220.101.5 dst=192.168.1.105 sport=62000 dport=3389 proto=tcp action=deny bytes_sent=60 bytes_received=0
+<14>1 2026-09-28T14:30:09Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=10.0.4.15 dst=8.8.8.8 sport=53200 dport=443 proto=tcp action=allow bytes_sent=1560 bytes_received=8900
+<14>1 2026-09-28T14:30:10Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=172.16.2.88 dst=1.1.1.1 sport=48000 dport=53 proto=udp action=allow bytes_sent=95 bytes_received=180

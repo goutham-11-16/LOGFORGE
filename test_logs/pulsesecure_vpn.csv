@@ -1,0 +1,6 @@
+timestamp,vendor,device_type,src_ip,dst_ip,src_port,dst_port,proto,action,user,status
+2026-09-28T14:36:01Z,PulseSecure,vpn,203.0.113.45,10.0.0.1,443,443,TCP,allow,admin,tunnel_active
+2026-09-28T14:36:02Z,PulseSecure,vpn,185.220.101.5,10.0.0.1,443,443,TCP,deny,guest_user,auth_failed
+2026-09-28T14:36:03Z,PulseSecure,vpn,198.51.100.12,10.0.0.1,443,443,TCP,allow,esamb,tunnel_active
+2026-09-28T14:36:04Z,PulseSecure,vpn,45.33.32.156,10.0.0.1,443,443,TCP,deny,root,account_locked
+2026-09-28T14:36:05Z,PulseSecure,vpn,172.16.2.88,10.0.0.1,443,443,TCP,allow,analyst_soc,tunnel_active

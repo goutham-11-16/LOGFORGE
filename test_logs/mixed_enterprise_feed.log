@@ -1,0 +1,100 @@
+<14>1 2026-09-28T04:36:47Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.1.105 dst=192.168.50.21 sport=80 dport=443 proto=tcp action=deny bytes_sent=500
+<164>Sep 28 04:36:47 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:10.0.4.15/443 dst inside:203.0.113.45/22 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:102|Packet inspected|5|src=172.16.2.88 dst=198.51.100.12 spt=22 dpt=53 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:47.906620+00:00","event_type":"traffic","src_ip":"192.168.50.21","dest_ip":"8.8.8.8","src_port":53,"dest_port":8080,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=203.0.113.45	dst=1.1.1.1	spt=8080	dpt=8443	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:47Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=198.51.100.12 dst=185.220.101.5 sport=8443 dport=3389 proto=udp action=allow bytes_sent=505
+<164>Sep 28 04:36:47 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:8.8.8.8/3389 dst inside:45.33.32.156/500 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:107|Packet inspected|3|src=1.1.1.1 dst=10.200.1.50 spt=500 dpt=4500 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.006620+00:00","event_type":"traffic","src_ip":"185.220.101.5","dest_ip":"192.168.1.1","src_port":4500,"dest_port":25,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=45.33.32.156	dst=192.168.1.105	spt=25	dpt=123	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=10.200.1.50 dst=10.0.4.15 sport=123 dport=80 proto=tcp action=allow bytes_sent=510
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:192.168.1.1/80 dst inside:172.16.2.88/443 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:112|Packet inspected|8|src=192.168.1.105 dst=192.168.50.21 spt=443 dpt=22 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.106620+00:00","event_type":"traffic","src_ip":"10.0.4.15","dest_ip":"203.0.113.45","src_port":22,"dest_port":53,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=172.16.2.88	dst=198.51.100.12	spt=53	dpt=8080	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.50.21 dst=8.8.8.8 sport=8080 dport=8443 proto=udp action=deny bytes_sent=515
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:203.0.113.45/8443 dst inside:1.1.1.1/3389 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:117|Packet inspected|6|src=198.51.100.12 dst=185.220.101.5 spt=3389 dpt=500 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.206620+00:00","event_type":"traffic","src_ip":"8.8.8.8","dest_ip":"45.33.32.156","src_port":500,"dest_port":4500,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=1.1.1.1	dst=10.200.1.50	spt=4500	dpt=25	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=185.220.101.5 dst=192.168.1.1 sport=25 dport=123 proto=tcp action=allow bytes_sent=520
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:45.33.32.156/123 dst inside:192.168.1.105/80 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:122|Packet inspected|4|src=10.200.1.50 dst=10.0.4.15 spt=80 dpt=443 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.306620+00:00","event_type":"traffic","src_ip":"192.168.1.1","dest_ip":"172.16.2.88","src_port":443,"dest_port":22,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=192.168.1.105	dst=192.168.50.21	spt=22	dpt=53	proto=6	act=blocked	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=10.0.4.15 dst=203.0.113.45 sport=53 dport=8080 proto=udp action=allow bytes_sent=525
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:172.16.2.88/8080 dst inside:198.51.100.12/8443 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:127|Packet inspected|9|src=192.168.50.21 dst=8.8.8.8 spt=8443 dpt=3389 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.406620+00:00","event_type":"traffic","src_ip":"203.0.113.45","dest_ip":"1.1.1.1","src_port":3389,"dest_port":500,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=198.51.100.12	dst=185.220.101.5	spt=500	dpt=4500	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=8.8.8.8 dst=45.33.32.156 sport=4500 dport=25 proto=tcp action=deny bytes_sent=530
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:1.1.1.1/25 dst inside:10.200.1.50/123 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:132|Packet inspected|7|src=185.220.101.5 dst=192.168.1.1 spt=123 dpt=80 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.506620+00:00","event_type":"traffic","src_ip":"45.33.32.156","dest_ip":"192.168.1.105","src_port":80,"dest_port":443,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=10.200.1.50	dst=10.0.4.15	spt=443	dpt=22	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.1.1 dst=172.16.2.88 sport=22 dport=53 proto=udp action=allow bytes_sent=535
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:192.168.1.105/53 dst inside:192.168.50.21/8080 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:137|Packet inspected|5|src=10.0.4.15 dst=203.0.113.45 spt=8080 dpt=8443 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.606620+00:00","event_type":"traffic","src_ip":"172.16.2.88","dest_ip":"198.51.100.12","src_port":8443,"dest_port":3389,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=192.168.50.21	dst=8.8.8.8	spt=3389	dpt=500	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=203.0.113.45 dst=1.1.1.1 sport=500 dport=4500 proto=tcp action=allow bytes_sent=540
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:198.51.100.12/4500 dst inside:185.220.101.5/25 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:142|Packet inspected|3|src=8.8.8.8 dst=45.33.32.156 spt=25 dpt=123 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.706620+00:00","event_type":"traffic","src_ip":"1.1.1.1","dest_ip":"10.200.1.50","src_port":123,"dest_port":80,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=185.220.101.5	dst=192.168.1.1	spt=80	dpt=443	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=45.33.32.156 dst=192.168.1.105 sport=443 dport=22 proto=udp action=deny bytes_sent=545
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:10.200.1.50/22 dst inside:10.0.4.15/53 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:147|Packet inspected|8|src=192.168.1.1 dst=172.16.2.88 spt=53 dpt=8080 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.806620+00:00","event_type":"traffic","src_ip":"192.168.1.105","dest_ip":"192.168.50.21","src_port":8080,"dest_port":8443,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=10.0.4.15	dst=203.0.113.45	spt=8443	dpt=3389	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=172.16.2.88 dst=198.51.100.12 sport=3389 dport=500 proto=tcp action=allow bytes_sent=550
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:192.168.50.21/500 dst inside:8.8.8.8/4500 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:102|Packet inspected|6|src=203.0.113.45 dst=1.1.1.1 spt=4500 dpt=25 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:48.906620+00:00","event_type":"traffic","src_ip":"198.51.100.12","dest_ip":"185.220.101.5","src_port":25,"dest_port":123,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=8.8.8.8	dst=45.33.32.156	spt=123	dpt=80	proto=6	act=blocked	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:48Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=1.1.1.1 dst=10.200.1.50 sport=80 dport=443 proto=udp action=allow bytes_sent=555
+<164>Sep 28 04:36:48 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:185.220.101.5/443 dst inside:192.168.1.1/22 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:107|Packet inspected|4|src=45.33.32.156 dst=192.168.1.105 spt=22 dpt=53 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.006620+00:00","event_type":"traffic","src_ip":"10.200.1.50","dest_ip":"10.0.4.15","src_port":53,"dest_port":8080,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=192.168.1.1	dst=172.16.2.88	spt=8080	dpt=8443	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:49Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.1.105 dst=192.168.50.21 sport=8443 dport=3389 proto=tcp action=deny bytes_sent=560
+<164>Sep 28 04:36:49 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:10.0.4.15/3389 dst inside:203.0.113.45/500 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:112|Packet inspected|9|src=172.16.2.88 dst=198.51.100.12 spt=500 dpt=4500 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.106620+00:00","event_type":"traffic","src_ip":"192.168.50.21","dest_ip":"8.8.8.8","src_port":4500,"dest_port":25,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=203.0.113.45	dst=1.1.1.1	spt=25	dpt=123	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:49Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=198.51.100.12 dst=185.220.101.5 sport=123 dport=80 proto=udp action=allow bytes_sent=565
+<164>Sep 28 04:36:49 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:8.8.8.8/80 dst inside:45.33.32.156/443 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:117|Packet inspected|7|src=1.1.1.1 dst=10.200.1.50 spt=443 dpt=22 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.206620+00:00","event_type":"traffic","src_ip":"185.220.101.5","dest_ip":"192.168.1.1","src_port":22,"dest_port":53,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=45.33.32.156	dst=192.168.1.105	spt=53	dpt=8080	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:49Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=10.200.1.50 dst=10.0.4.15 sport=8080 dport=8443 proto=tcp action=allow bytes_sent=570
+<164>Sep 28 04:36:49 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:192.168.1.1/8443 dst inside:172.16.2.88/3389 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:122|Packet inspected|5|src=192.168.1.105 dst=192.168.50.21 spt=3389 dpt=500 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.306620+00:00","event_type":"traffic","src_ip":"10.0.4.15","dest_ip":"203.0.113.45","src_port":500,"dest_port":4500,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=172.16.2.88	dst=198.51.100.12	spt=4500	dpt=25	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:49Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.50.21 dst=8.8.8.8 sport=25 dport=123 proto=udp action=deny bytes_sent=575
+<164>Sep 28 04:36:49 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:203.0.113.45/123 dst inside:1.1.1.1/80 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:127|Packet inspected|3|src=198.51.100.12 dst=185.220.101.5 spt=80 dpt=443 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.406620+00:00","event_type":"traffic","src_ip":"8.8.8.8","dest_ip":"45.33.32.156","src_port":443,"dest_port":22,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=1.1.1.1	dst=10.200.1.50	spt=22	dpt=53	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:49Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=185.220.101.5 dst=192.168.1.1 sport=53 dport=8080 proto=tcp action=allow bytes_sent=580
+<164>Sep 28 04:36:49 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:45.33.32.156/8080 dst inside:192.168.1.105/8443 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:132|Packet inspected|8|src=10.200.1.50 dst=10.0.4.15 spt=8443 dpt=3389 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.506620+00:00","event_type":"traffic","src_ip":"192.168.1.1","dest_ip":"172.16.2.88","src_port":3389,"dest_port":500,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=192.168.1.105	dst=192.168.50.21	spt=500	dpt=4500	proto=6	act=blocked	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:49Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=10.0.4.15 dst=203.0.113.45 sport=4500 dport=25 proto=udp action=allow bytes_sent=585
+<164>Sep 28 04:36:49 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:172.16.2.88/25 dst inside:198.51.100.12/123 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:137|Packet inspected|6|src=192.168.50.21 dst=8.8.8.8 spt=123 dpt=80 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.606620+00:00","event_type":"traffic","src_ip":"203.0.113.45","dest_ip":"1.1.1.1","src_port":80,"dest_port":443,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=198.51.100.12	dst=185.220.101.5	spt=443	dpt=22	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:49Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=8.8.8.8 dst=45.33.32.156 sport=22 dport=53 proto=tcp action=deny bytes_sent=590
+<164>Sep 28 04:36:49 cisco-asa-edge : %ASA-6-302013: Built tcp src outside:1.1.1.1/53 dst inside:10.200.1.50/8080 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:142|Packet inspected|4|src=185.220.101.5 dst=192.168.1.1 spt=8080 dpt=8443 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.706620+00:00","event_type":"traffic","src_ip":"45.33.32.156","dest_ip":"192.168.1.105","src_port":8443,"dest_port":3389,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=10.200.1.50	dst=10.0.4.15	spt=3389	dpt=500	proto=6	act=allow	devname=FGT-CORE-01
+<14>1 2026-09-28T04:36:49Z PA-5220-FW01 1 2026/09/28 TRAFFIC - - - src=192.168.1.1 dst=172.16.2.88 sport=500 dport=4500 proto=udp action=allow bytes_sent=595
+<164>Sep 28 04:36:49 cisco-asa-edge : %ASA-4-106023: Deny tcp src outside:192.168.1.105/4500 dst inside:192.168.50.21/25 by access-group "outside_in"
+CEF:0|CheckPoint|SmartDefense|R81.20|threat:147|Packet inspected|9|src=10.0.4.15 dst=203.0.113.45 spt=25 dpt=123 proto=TCP act=allow msg=Perimeter boundary filter
+{"timestamp":"2026-09-28T04:36:49.806620+00:00","event_type":"traffic","src_ip":"172.16.2.88","dest_ip":"198.51.100.12","src_port":123,"dest_port":80,"proto":"TCP","action":"allow","app_proto":"tls"}
+LEEF:1.0|Fortinet|FortiGate|7.0|10203|	src=192.168.50.21	dst=8.8.8.8	spt=80	dpt=443	proto=6	act=allow	devname=FGT-CORE-01

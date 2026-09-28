@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gradEmblem" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="gradText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Cyber Shield Emblem -->
+  <g transform="translate(10, 10)">
+    <!-- Outer Glow Shield -->
+    <path d="M50 5 L88 20 C88 58 68 85 50 95 C32 85 12 58 12 20 Z" fill="none" stroke="url(#gradEmblem)" stroke-width="3" filter="url(#glow)" opacity="0.6"/>
+    <!-- Solid Shield -->
+    <path d="M50 8 L85 22 C85 56 66 82 50 91 C34 82 15 56 15 22 Z" fill="#0f172a" stroke="url(#gradEmblem)" stroke-width="2.5"/>
+    
+    <!-- Cyber Geometric Data Core -->
+    <polygon points="50,26 68,36 68,58 50,68 32,58 32,36" fill="rgba(6, 182, 212, 0.15)" stroke="#06b6d4" stroke-width="1.8"/>
+    <!-- Circuit Lines & Pulse Node -->
+    <circle cx="50" cy="47" r="6" fill="#10b981" filter="url(#glow)"/>
+    <line x1="50" y1="26" x2="50" y2="41" stroke="#38bdf8" stroke-width="2"/>
+    <line x1="50" y1="53" x2="50" y2="68" stroke="#38bdf8" stroke-width="2"/>
+    <line x1="32" y1="47" x2="44" y2="47" stroke="#38bdf8" stroke-width="2"/>
+    <line x1="56" y1="47" x2="68" y2="47" stroke="#38bdf8" stroke-width="2"/>
+  </g>
+
+  <!-- Typography -->
+  <g transform="translate(120, 48)">
+    <text font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="38" font-weight="900" letter-spacing="-0.03em" fill="url(#gradText)">LOG<tspan fill="#06b6d4">FORGE</tspan></text>
+    <text y="30" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" letter-spacing="0.25em" fill="#10b981">UNIVERSAL LOG FRAMEWORK</text>
+    <text y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="500" fill="#64748b">ENTERPRISE AIR-GAPPED SIEM PRE-PROCESSING ENGINE</text>
+  </g>
+</svg>

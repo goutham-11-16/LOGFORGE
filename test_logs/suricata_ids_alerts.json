@@ -1,0 +1,5 @@
+{"timestamp":"2026-09-28T14:35:01Z","event_type":"alert","src_ip":"185.220.101.5","dest_ip":"10.200.1.50","src_port":61000,"dest_port":22,"proto":"TCP","action":"alert","alert":{"signature":"ET SCAN Suspicious Inbound SSH Port Scan","severity":2}}
+{"timestamp":"2026-09-28T14:35:02Z","event_type":"traffic","src_ip":"192.168.1.105","dest_ip":"8.8.8.8","src_port":52341,"dest_port":443,"proto":"TCP","action":"allow","app_proto":"tls"}
+{"timestamp":"2026-09-28T14:35:03Z","event_type":"alert","src_ip":"45.33.32.156","dest_ip":"192.168.1.1","src_port":44300,"dest_port":443,"proto":"TCP","action":"drop","alert":{"signature":"ET EXPLOIT Apache Struts Remote Code Execution","severity":1}}
+{"timestamp":"2026-09-28T14:35:04Z","event_type":"traffic","src_ip":"10.0.4.15","dest_ip":"1.1.1.1","src_port":49152,"dest_port":53,"proto":"UDP","action":"allow","app_proto":"dns"}
+{"timestamp":"2026-09-28T14:35:05Z","event_type":"alert","src_ip":"203.0.113.45","dest_ip":"192.168.50.21","src_port":58990,"dest_port":3389,"proto":"TCP","action":"alert","alert":{"signature":"ET POLICY Suspicious Inbound Microsoft RDP Traffic","severity":3}}
